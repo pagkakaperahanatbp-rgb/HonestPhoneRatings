@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Been to Tech</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#14181f;--mu:#667085;--bd:#e3e6eb;--ac:#2f5bea;--ok:#12805c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1218;--card:#181c25;--tx:#eef0f4;--mu:#98a1b2;--bd:#2a2f3b;--ac:#7c9bff;--ok:#4fd1a1}}
+:root[data-theme="dark"]{--bg:#0f1218;--card:#181c25;--tx:#eef0f4;--mu:#98a1b2;--bd:#2a2f3b;--ac:#7c9bff;--ok:#4fd1a1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:24px;margin:0 0 4px}h2{font-size:17px;margin:0}h3{font-size:14px;margin:18px 0 8px;color:var(--mu);text-transform:uppercase;letter-spacing:.05em}
+.mu{color:var(--mu)}a{color:var(--ac);text-decoration:none;cursor:pointer}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;margin:12px 0}
+.brand-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--bd);cursor:pointer}
+.row:hover .nm{color:var(--ac)}
+.chip{font-weight:700;padding:2px 10px;border-radius:99px;background:var(--bg);border:1px solid var(--bd);white-space:nowrap}
+.btn{display:inline-block;border:1px dashed var(--ac);color:var(--ac);border-radius:10px;padding:8px 14px;background:transparent;font:inherit;cursor:pointer}
+.btn.solid{background:var(--ac);color:#fff;border-style:solid}
+.btn.del{border-color:#d9534f;color:#d9534f}
+.add-tile{display:block;text-align:center;padding:16px;margin:12px 0}
+.big{font-size:44px;font-weight:800;line-height:1}
+.bar{height:8px;background:var(--bg);border-radius:6px;overflow:hidden;border:1px solid var(--bd)}
+.bar i{display:block;height:100%;background:var(--ac)}
+.cat{margin:12px 0}.cat .t{display:flex;justify-content:space-between;margin-bottom:4px}
+.tbl{width:100%;border-collapse:collapse}.tbl td{padding:6px 0;border-top:1px solid var(--bd);vertical-align:top}.tbl td:last-child{text-align:right}
+.scroll{overflow-x:auto}
+label{display:block;font-size:13px;color:var(--mu);margin:10px 0 3px}
+input,select,textarea{width:100%;padding:9px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+ul.f{margin:0;padding-left:20px}
+.hero{background:linear-gradient(135deg,#2f5bea,#7a3ff0);color:#fff;border-radius:18px;padding:26px 22px;margin-bottom:16px}.hero h1{font-size:clamp(34px,6.5vw,60px);line-height:1.05;font-weight:800;letter-spacing:-.02em;margin:6px 0 10px}.hero h1 span{font-weight:500;opacity:.9}.hero p{font-size:17px}.hero p{margin:0 0 16px;opacity:.9}.kick{font-size:12px;letter-spacing:.12em;opacity:.8;font-weight:700}
+.stats{display:flex;gap:10px;flex-wrap:wrap}.stats div{background:rgba(255,255,255,.16);border-radius:12px;padding:8px 14px;min-width:90px}.stats b{display:block;font-size:22px}.stats span{font-size:12px;opacity:.9}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:6px}.fc{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:99px;padding:6px 14px;font:inherit;cursor:pointer;white-space:nowrap}.fc.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.bh{display:flex;align-items:center;gap:10px;margin:22px 0 10px}.av{width:36px;height:36px;border-radius:10px;background:var(--ac);color:#fff;display:grid;place-items:center;font-weight:800}.bh h2{flex:1}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}.pc{background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .15s,box-shadow .15s}.pc:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.12)}
+.th{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}.ph{display:grid;place-items:center;font-size:42px;background:var(--bg)}.pb{padding:10px 12px}.pb b{display:block}.mimg{width:100%;max-height:320px;object-fit:contain;border-radius:14px;background:var(--card);border:1px solid var(--bd);display:block;margin-bottom:10px;aspect-ratio:16/9}
+.lay{display:grid;grid-template-columns:240px 1fr;gap:18px;align-items:start}
+.side{position:sticky;top:12px;margin:0}.side summary{cursor:pointer;font-size:16px}
+.fg h4{margin:16px 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--mu)}
+.ck{display:flex;align-items:center;gap:8px;margin:5px 0;color:var(--tx);font-size:14px;cursor:pointer}.ck input{width:auto;margin:0}
+main.wide{max-width:1120px}
+
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--card);border-bottom:1px solid var(--bd);box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.top>div{max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.top a.brand{display:flex;align-items:center;gap:12px;color:var(--tx)}
+.top img{height:44px;width:auto;max-width:140px;object-fit:contain;border-radius:8px;background:#fff;padding:3px}
+.top b{display:block;font-size:21px;letter-spacing:-.01em;line-height:1.1}.top small{display:block;color:var(--mu);font-size:12px;margin-top:2px}
+.top nav a{color:var(--mu);font-size:14px}.top nav a:hover{color:var(--ac)}
+@media(max-width:480px){.top nav{display:none}.top b{font-size:18px}.top img{height:38px}}
+.lay{transition:grid-template-columns .25s ease,gap .25s ease}
+.side{min-width:0;transition:transform .25s ease,opacity .2s ease,visibility .25s}
+.lay.fh{grid-template-columns:0 1fr;gap:0}
+.lay.fh .side{transform:translateX(-120%);opacity:0;visibility:hidden;pointer-events:none}
+.sh{display:flex;justify-content:space-between;align-items:center}
+.x{border:1px solid var(--bd);background:var(--bg);color:var(--mu);border-radius:8px;padding:4px 10px;font:inherit;font-size:13px;cursor:pointer}
+.tbar{margin-bottom:8px}.ov{display:none}.main{min-width:0}
+@media(max-width:780px){
+ .lay,.lay.fh{grid-template-columns:1fr;gap:0}
+ .side{position:fixed;left:0;top:0;bottom:0;width:290px;max-width:86vw;z-index:30;border-radius:0 14px 14px 0;overflow:auto;padding-top:calc(env(safe-area-inset-top,0px) + 14px)}
+ .lay.fh .side{transform:translateX(-105%)}
+ .lay:not(.fh) .ov{display:block;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:25}
+}
+.hero{position:relative;overflow:hidden;text-align:center;color:#fff;border-radius:18px;padding:34px 20px 30px;background:linear-gradient(100deg,#2563eb 0%,#4f46e5 50%,#7c3aed 100%)}
+.hero:before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 260' preserveAspectRatio='xMidYMid slice'%3E%3Cdefs%3E%3Cg id='a' fill='none' stroke='white' stroke-width='1.6' stroke-opacity='.45'%3E%3Cpolyline points='0,125 110,125 175,70 300,70'/%3E%3Ccircle cx='300' cy='70' r='4' fill='white' fill-opacity='.5'/%3E%3Cpolyline points='0,175 90,175 140,220 270,220 320,195'/%3E%3Ccircle cx='320' cy='195' r='4' fill='white' fill-opacity='.5'/%3E%3Cpolyline points='30,40 150,40 200,85 330,85'/%3E%3Cpolyline points='0,95 60,95 110,150 230,150'/%3E%3Crect x='330' y='62' width='34' height='34' rx='3'/%3E%3Crect x='339' y='71' width='16' height='16'/%3E%3Crect x='300' y='160' width='34' height='34' rx='3'/%3E%3Crect x='309' y='169' width='16' height='16'/%3E%3C/g%3E%3C/defs%3E%3Cuse href='%23a'/%3E%3Cuse href='%23a' transform='translate%281200 0%29 scale%28-1 1%29'/%3E%3C/svg%3E") center/cover no-repeat;pointer-events:none}
+.hero>*{position:relative}
+.hero .kick{font-size:clamp(11px,1.6vw,14px);letter-spacing:.14em;font-weight:700;opacity:1}
+.hero h1{font-size:clamp(34px,7vw,66px);line-height:1.02;font-weight:800;letter-spacing:-.02em;margin:10px 0 0}
+.hero h1 span{display:block;font-size:.43em;margin-top:.3em;font-weight:400;letter-spacing:-.01em;background:linear-gradient(180deg,#fff 20%,#aeb4c6);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:1}
+.hero .dv{height:1px;background:rgba(255,255,255,.55);width:62%;max-width:700px;margin:16px auto 14px}
+.hero p{font-size:clamp(14px,2.2vw,21px);margin:0;opacity:.95}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+// ================= CONFIG =================
+var SITE_NAME="Been to Tech";
+var LOGO_URL="https://drive.google.com/file/d/1zZ8ry2rTIZn35iPRvAPEIrqsYOv08Q4M/view?usp=sharing"; // Drive file must be shared as "Anyone with the link"
+var SHEET_CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vScRFwnnxy-oDCxW5yBsyChUcPNJZvbzG7TsUvuF1FNmVNk6rLpemjAx3gF1iuNH1eyX6ZNkXIo-eLF/pub?gid=656534179&single=true&output=csv";   // published CSV link of your Score sheet tab
+var SHEET_EDIT_URL="";  // the normal edit link of your Google Sheet (admin shortcut)
+var ADMIN_HASH="057ba03d6c44104863dc7361fe4578965d1887360f90a0895882e58a6248fc86"; // SHA-256 of the admin passcode (default passcode: changeme)
+// ==========================================
+// ---------- Scoring rules (from the Criteria sheet) ----------
+var W={chipset:.25,storage:.15,display:.2,battery:.2,value:.2};
+var PANELS={"LTPO OLED / premium OLED":5,"OLED / AMOLED":4,"High-quality IPS LCD":3,"Basic IPS LCD":2,"TN / very basic LCD":1};
+var RES={"QHD+ or higher":5,"High-quality 1.5K":4.5,"1080p / FHD+":4,"720p / HD+":2,"Below 720p":1};
+var STYPE={"UFS 4.x":1,"UFS 3.x":.5,"UFS 2.2":0,"eMMC":-.5};
+var DEALS={5:"Great deal",4:"Good deal",3:"Fair/good deal",2:"Poor deal",1:"Terrible deal"};
+function tier(v,t){for(var i=0;i<t.length;i++)if(v>=t[i][0])return t[i][1];return t[t.length-1][1]}
+function score(m){var ov=m.ov||{};
+  var chip=ov.chipset||tier(m.antutu,[[1500000,5],[1000000,4],[600000,3],[300000,2],[0,1]]);
+  var base=m.storage>=512?5:m.storage>=256?4:m.storage>=128?3:m.storage>=64?2:1;
+  var stor=ov.storage||Math.min(5,base+(STYPE[m.stype]||0));
+  var d=[tier(m.hz,[[120,5],[90,4],[60,3],[0,2]]),PANELS[m.panel]||1,RES[m.res]||1,
+    tier(m.nits,[[3000,5],[2000,4.5],[1000,4],[600,3],[400,2],[0,1]])];
+  var disp=ov.display||d.reduce(function(a,b){return a+b},0)/4;
+  var b=[tier(m.mah,[[7000,5],[6000,4.5],[5000,4],[4000,3],[3000,2],[0,1]]),
+    tier(m.watt,[[100,5],[67,4],[45,3],[25,2],[0,1]])];
+  var batt=ov.battery||(b[0]+b[1])/2;
+  var val=m.value;
+  var fin=ov.final||Math.min(5,chip*W.chipset+stor*W.storage+disp*W.display+batt*W.battery+val*W.value);
+  return {chipset:chip,storage:stor,display:disp,battery:batt,value:val,final:fin,d:m.dd||d,b:m.bb||b,base:base};
+}
+function meaning(s){return s>=5?["Exceptional","Top-tier / best-in-class for its category"]:s>=4?["Excellent","Clearly above average"]:s>=3?["Good","Solid, acceptable performance"]:s>=2?["Below Average","Noticeable compromises"]:["Poor","Weak by current standards"]}
+// ---------- Data ----------
+var SEED=[
+{id:"s1",brand:"Infinix",name:"HOT 70",chipset:"MediaTek Helio G100",antutu:575630,storage:256,stype:"UFS 2.2",hz:120,panel:"Basic IPS LCD",res:"720p / HD+",nits:700,mah:6000,watt:45,price:8999,value:3,features:["Massive 6,000mAh Battery with Bypass Charging","One-Tap AI shortcut button","Thermo-Reactive Color Changing Design"]},
+{id:"s2",brand:"Infinix",name:"HOT 70 Pro",chipset:"MediaTek Dimensity 7100",antutu:785352,storage:256,stype:"UFS 2.2",hz:144,panel:"Basic IPS LCD",res:"1080p / FHD+",nits:950,mah:6000,watt:45,price:11999,value:3,features:["Flagship-Tier 144Hz Full HD+ LTPS display","Military-Grade Toughness & True IP68","\"Active Matrix Cube\" LED Back Panel"]},
+{id:"s3",brand:"Vivo",name:"Y05",chipset:"Unisoc T7225",antutu:252597,storage:128,stype:"eMMC",hz:120,panel:"Basic IPS LCD",res:"720p / HD+",nits:1200,mah:6500,watt:15,price:5999,value:1,features:["Massive 6,500mAh BlueVolt Battery","SGS 5-Star Drop Resistance","120Hz Sunlight Screen with 1,200 Nits Peak Brightness"]},
+{id:"s4",brand:"TECNO",name:"CAMON Slim 5G",chipset:"MediaTek Dimensity 7300e",antutu:831785,storage:256,stype:"UFS 2.2",hz:144,panel:"OLED / AMOLED",res:"High-quality 1.5K",nits:1600,mah:6000,watt:45,price:24999,value:2,features:["1.5K resolution, 144Hz AMOLED display","Maximum Durability Rating (IP69K, IP69, IP68, IP66)","Flagship 144Hz AMOLED Display & Sony LYTIA Camera"]}
+];
+var models=SEED.slice(),isAdmin=false,notice="";
+function parseCSV(t){var r=[],row=[],c="",q=false;for(var i=0;i<t.length;i++){var ch=t[i];if(q){if(ch=='"'){if(t[i+1]=='"'){c+='"';i++}else q=false}else c+=ch}else if(ch=='"')q=true;else if(ch==","){row.push(c);c=""}else if(ch=="\n"||ch=="\r"){if(ch=="\r"&&t[i+1]=="\n")i++;row.push(c);r.push(row);row=[];c=""}else c+=ch}if(c||row.length){row.push(c);r.push(row)}return r}
+function pick(obj,v,def){var l=String(v).toLowerCase().trim();for(var k in obj)if(k.toLowerCase()===l)return k;return def}
+function fromRows(rows){
+  // Reads your "Score" tab layout: header row starts with "Model"; optional extra columns named "Brand" and "Image".
+  var hi=-1;for(var i=0;i<rows.length;i++)if((rows[i][0]||"").trim().toLowerCase()==="model"){hi=i;break}
+  if(hi<0)return [];
+  var H=rows[hi].map(function(h){return h.toLowerCase().replace(/[^a-z0-9]/g,"")});
+  var iImg=H.indexOf("image"),iBr=H.indexOf("brand");
+  function c(r,i){return i<0?"":String(r[i]||"").replace(/\t/g," ").trim()}
+  function n(r,i){var v=parseFloat(c(r,i).replace(/,/g,""));return isNaN(v)?undefined:v}
+  function arr(r,a){var o=a.map(function(i){return n(r,i)});return o.every(function(x){return x!==undefined})?o:null}
+  return rows.slice(hi+1).filter(function(r){return c(r,0)}).map(function(r){
+    var full=c(r,0),br=c(r,iBr),b,nm;
+    if(br){b=br;nm=full.toLowerCase().indexOf(br.toLowerCase())===0?full.slice(br.length).trim():full}
+    else{var sp=full.indexOf(" ");b=sp<0?full:full.slice(0,sp);nm=sp<0?full:full.slice(sp+1).trim()}
+    return {id:(b+"-"+nm).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""),brand:b,name:nm||full,chipset:c(r,7)||"—",antutu:n(r,8)||0,storage:n(r,10)||0,stype:c(r,11),hz:n(r,15)||0,panel:c(r,16),res:c(r,17),nits:n(r,18)||0,mah:n(r,24)||0,watt:n(r,25)||0,price:n(r,30)||0,value:n(r,32)||n(r,5)||3,deal:c(r,29),img:c(r,iImg),
+      features:c(r,31).split(/\n/).map(function(x){return x.replace(/^[>\-\s]+/,"").trim()}).filter(Boolean),
+      dd:arr(r,[19,20,21,22]),bb:arr(r,[26,27]),ov:{chipset:n(r,1),storage:n(r,2),display:n(r,3),battery:n(r,4),final:n(r,6)}};
+  });
+}
+function needSheet(){if(!SHEET_EDIT_URL){alert("Set SHEET_EDIT_URL at the top of the HTML file to your Google Sheet's edit link.");return false}return true}
+function driveImg(u){if(!u)return "";var m=u.match(/\/d\/([\w-]+)/)||u.match(/[?&]id=([\w-]+)/);return m?"https://drive.google.com/thumbnail?id="+m[1]+"&sz=w1000":u}
+function imgErr(i){var d=document.createElement("div");d.className=i.className+" ph";d.textContent="📱";i.replaceWith(d)}
+async function sha(s){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("")}
+async function toggleAdmin(){if(isAdmin){isAdmin=false;return route()}var p=prompt("Admin passcode:");if(p===null)return;try{if(await sha(p)===ADMIN_HASH){isAdmin=true;route()}else alert("Wrong passcode.")}catch(e){alert("Admin unlock needs https.")}}
+async function initRT(){
+  if(SHEET_CSV_URL){try{var r=await fetch(SHEET_CSV_URL,{cache:"no-store"});if(!r.ok)throw 0;var m=fromRows(parseCSV(await r.text()));if(m.length){models=m;notice=""}else notice="The sheet has no rows yet. Showing sample data."}catch(e){notice="Couldn't load the Google Sheet. Showing sample data."}}
+  else notice="Demo data. Set SHEET_CSV_URL in the file to connect your Google Sheet.";
+  route();
+}
+
+
+// ---------- Helpers ----------
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function f(n){return (Math.round(n*100)/100).toString()}
+function peso(n){return "₱"+Number(n).toLocaleString()}
+var app=document.getElementById("app");
+function opts(obj,sel){return Object.keys(obj).map(function(k){return '<option'+(k===sel?' selected':'')+'>'+esc(k)+'</option>'}).join("")}
+// ---------- Pages ----------
+var filt="All";
+function thumb(m,c){var u=driveImg(m.img);return u?'<img class="'+c+'" src="'+esc(u)+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="imgErr(this)">':'<div class="'+c+' ph">📱</div>'}
+var F={q:"",price:[],ant:[],star:[]};var fOpen=window.innerWidth>780;
+var PR=[["₱5,000 and less",function(v){return v<=5000}],["₱5,000 – 10,000",function(v){return v>5000&&v<=10000}],["₱10,000 – 15,000",function(v){return v>10000&&v<=15000}],["₱15,000 – 20,000",function(v){return v>15000&&v<=20000}],["₱20,000 – 30,000",function(v){return v>20000&&v<30000}],["₱30,000 or higher",function(v){return v>=30000}]];
+var AN=[["1,500,000+",function(v){return v>=1500000}],["1,000,000 – 1,499,999",function(v){return v>=1000000&&v<1500000}],["600,000 – 999,999",function(v){return v>=600000&&v<1000000}],["300,000 – 599,999",function(v){return v>=300000&&v<600000}],["Below 300,000",function(v){return v<300000}]];
+var SR=[["★★★★★ 5 · Exceptional",function(v){return v>=5}],["★★★★ 4 – 4.99 · Excellent",function(v){return v>=4&&v<5}],["★★★ 3 – 3.99 · Good",function(v){return v>=3&&v<4}],["★★ 2 – 2.99 · Below Average",function(v){return v>=2&&v<3}],["★ Below 2 · Poor",function(v){return v<2}]];
+function pass(m){
+  var q=F.q.toLowerCase().trim();
+  if(q&&(m.brand+" "+m.name+" "+m.chipset).toLowerCase().indexOf(q)<0)return false;
+  function any(sel,T,v){return !sel.length||sel.some(function(i){return T[i][1](v)})}
+  return any(F.price,PR,m.price)&&any(F.ant,AN,m.antutu)&&any(F.star,SR,score(m).final);
+}
+function group(title,key,T){return '<div class="fg"><h4>'+title+'</h4>'+T.map(function(t,i){return '<label class="ck"><input type="checkbox" data-k="'+key+'" value="'+i+'"'+(F[key].indexOf(i)>-1?' checked':'')+'> '+t[0]+'</label>'}).join("")+'</div>'}
+function renderRes(){
+  var list=models.filter(pass),brands={};
+  list.forEach(function(m){(brands[m.brand]=brands[m.brand]||[]).push(m)});
+  var all=Array.from(new Set(models.map(function(m){return m.brand}))).sort();
+  if(filt!=="All"&&all.indexOf(filt)<0)filt="All";
+  var h='<div class="chips">'+["All"].concat(all).map(function(n){return '<button class="fc'+(n===filt?' on':'')+'" data-b="'+esc(n)+'">'+esc(n)+'</button>'}).join("")+'</div><div class="mu" style="margin:2px 0 6px">'+list.length+' of '+models.length+' models</div>';
+  Object.keys(brands).sort().filter(function(n){return filt==="All"||n===filt}).forEach(function(b){
+    h+='<div class="bh"><div class="av">'+esc(b.charAt(0).toUpperCase())+'</div><h2>'+esc(b)+' <span class="mu" style="font-weight:400">· '+brands[b].length+'</span></h2></div><div class="pg">';
+    brands[b].forEach(function(m){var s=score(m);h+='<div class="pc" onclick="location.hash=\'#/model/'+m.id+'\'">'+thumb(m,'th')+'<div class="pb"><b>'+esc(m.name)+'</b><div class="mu" style="font-size:13px">'+peso(m.price)+'</div><div style="margin-top:6px"><span class="chip">★ '+f(s.final)+'</span> <span class="mu" style="font-size:12px">'+meaning(s.final)[0]+'</span></div></div></div>'});
+    h+='</div>';
+  });
+  if(!list.length)h+='<div class="card mu">No phones match these filters.</div>';
+  var el=document.getElementById("res");el.innerHTML=h;
+  el.querySelectorAll(".fc").forEach(function(b){b.onclick=function(){filt=b.getAttribute("data-b");renderRes()}});
+}
+function home(){
+  var brandCount=new Set(models.map(function(m){return m.brand})).size;
+  var best=models.slice().sort(function(a,b){return score(b).final-score(a).final})[0];
+  var h='<section class="hero"><div class="kick">BEEN TO TECH • PHONE SCORES</div><h1>Honest Phone Ratings<span>by Been to Tech</span></h1><div class="dv"></div><p>Chipset, storage, display, battery and value, scored out of 5.</p></section>';
+  if(notice)h+='<div class="card mu" style="font-size:13px">'+esc(notice)+'</div>';
+  h+='<div class="lay'+(fOpen?'':' fh')+'" id="lay"><div class="ov" id="ov"></div><aside class="side card"><div class="sh"><b>Filters</b><button class="x" id="hide">‹ Hide</button></div><div class="fg"><h4>Model</h4><input id="q" placeholder="Search model, brand or chipset" value="'+esc(F.q)+'"></div>'+group("Price range","price",PR)+group("AnTuTu rating","ant",AN)+group("Star rating","star",SR)+'<div class="fg"><button class="btn" id="clr">Clear filters</button></div></aside><div class="main"><div class="tbar"><button class="btn" id="tf">☰ Filters</button></div><div id="res"></div></div></div>';
+  app.innerHTML=h;
+  var side=app.querySelector(".side");
+  side.addEventListener("change",function(e){var t=e.target,k=t.getAttribute("data-k");if(!k)return;var a=F[k],v=+t.value,i=a.indexOf(v);if(t.checked&&i<0)a.push(v);if(!t.checked&&i>-1)a.splice(i,1);renderRes()});
+  document.getElementById("q").addEventListener("input",function(e){F.q=e.target.value;renderRes()});
+  function setF(o){fOpen=o;document.getElementById("lay").classList.toggle("fh",!o)}
+  document.getElementById("hide").onclick=function(){setF(false)};document.getElementById("tf").onclick=function(){setF(!fOpen)};document.getElementById("ov").onclick=function(){setF(false)};
+  document.getElementById("clr").onclick=function(){F={q:"",price:[],ant:[],star:[]};filt="All";home()};
+  renderRes();
+}
+function model(id){
+  var m=models.filter(function(x){return x.id===id})[0];
+  if(!m){location.hash="#/";return}
+  var s=score(m),mn=meaning(s.final);
+  var cats=[["⚡ Chipset",s.chipset,W.chipset,m.chipset+" · AnTuTu "+m.antutu.toLocaleString()],
+    ["💾 Storage",s.storage,W.storage,m.storage+"GB "+m.stype],
+    ["🖥️ Display",s.display,W.display,m.hz+"Hz · "+m.panel+" · "+m.res+" · "+m.nits+" nits"],
+    ["🔋 Battery",s.battery,W.battery,m.mah.toLocaleString()+"mAh · "+m.watt+"W wired"],
+    ["💰 Value",s.value,W.value,peso(m.price)+" · "+(m.deal||DEALS[m.value])]];
+  var h='<p><a href="#/">← All phones</a></p>'+thumb(m,'mimg')+'<div class="mu">'+esc(m.brand)+'</div><h1>'+esc(m.name)+'</h1>'+
+    '<div class="card"><div class="big">'+f(s.final)+'<span class="mu" style="font-size:18px;font-weight:500"> / 5</span></div><div><b>'+mn[0]+'</b> <span class="mu">— '+mn[1]+'</span></div></div>'+
+    '<h3>Score breakdown</h3><div class="card">';
+  cats.forEach(function(c){h+='<div class="cat"><div class="t"><b>'+c[0]+' <span class="mu">('+Math.round(c[2]*100)+'%)</span></b><b>'+f(c[1])+'</b></div><div class="bar"><i style="width:'+c[1]/5*100+'%"></i></div><div class="mu">'+esc(c[3])+'</div></div>'});
+  h+='</div><h3>Display &amp; battery detail</h3><div class="card scroll"><table class="tbl">'+
+    '<tr><td>Refresh rate</td><td>'+s.d[0]+'</td></tr><tr><td>Panel</td><td>'+s.d[1]+'</td></tr><tr><td>Resolution</td><td>'+s.d[2]+'</td></tr><tr><td>Peak brightness</td><td>'+s.d[3]+'</td></tr>'+
+    '<tr><td>Battery capacity</td><td>'+s.b[0]+'</td></tr><tr><td>Charging</td><td>'+s.b[1]+'</td></tr></table></div>'+
+    '<h3>Key features</h3><div class="card"><ul class="f">'+(m.features.length?m.features.map(function(x){return '<li>'+esc(x)+'</li>'}).join(""):'<li class="mu">None listed</li>')+'</ul></div>'+
+    (isAdmin&&SHEET_EDIT_URL?'<p><a class="btn" target="_blank" rel="noopener" href="'+esc(SHEET_EDIT_URL)+'">Edit this phone in Google Sheet</a></p>':'');
+  app.innerHTML=h;
+  
+}
+// ---------- Router ----------
+function route(){
+  var p=location.hash.replace(/^#\/?/,"").split("/");
+  var clone=app.cloneNode(false);app.parentNode.replaceChild(clone,app);app=clone;app.className=p[0]?"":"wide"; // drops stale listeners
+  if(p[0]==="model")model(p[1]);else home();
+  window.scrollTo(0,0);
+}
+(function(){document.title=SITE_NAME+" · Phone Scores";var u=driveImg(LOGO_URL);if(u){var l=document.createElement("link");l.rel="icon";l.href=u;document.head.appendChild(l)}})();
+window.addEventListener("hashchange",route);route();initRT();
+</script>
+</body>
+</html>
